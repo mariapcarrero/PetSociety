@@ -1,10 +1,9 @@
 <?php
 session_start();
 if ($_SESSION["id"] == -1) {
-  header("location:Login.php");
+  header("location:../Login.php");
 }
 ?>
-
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -63,9 +62,7 @@ if ($_SESSION["id"] == -1) {
                   <li><a href="#home">Inicio</a></li>
                   <li><a href="/ModificarCuenta/index.php">Modificar Cuenta</a></li>
                   <li><a href="registroMascota.php">Registrar una Mascota</a></li>
-<li><a href="gestionMascotas.php">Gestionar Mascotas</a></li>
-                  <li><a href="/Adopcion/adopcion.php">Adopción</a></li>
-                  <li><a href="/Adopcion/adopcion.php">Venta</a></li>
+                    <li><a href="/gestionarMascota/GestionM/gestionMascotas.php">Gestionar Mascotas</a></li>
                   <li><a href="#features">Servicios</a></li>
                   <li><a href="logout.php">Cerrar Sesión</a></li>
                   <!-- <li><a href="#feature-work">Contactenos</a></li>
@@ -130,7 +127,7 @@ if ($_SESSION["id"] == -1) {
                   <div class="feature-text">
                     <h4>Venta de Mascotas</h4>
                     <p>En esta sección podrás ver la oferta de mascotas en venta en la página web. Y si estás registrado, podrás adquirir las que quieras.</p>
-                    <a href="#"><< IR >></a>
+                    <a href="Venta/venta.php">IR>></a>
                   </div>
                 </div>
               </div>
