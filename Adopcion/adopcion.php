@@ -5,6 +5,13 @@ $username = "granescala";
 $password = "Granescala.123";
 $dbname = "GE";
 
+session_start();
+if(isset($_SESSION['id'])){
+  $flag=1;
+} else {
+  $flag=0;
+}
+
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,7 +21,7 @@ if ($conn->connect_error) {
 } 
 
 
-$sql = "SELECT * FROM Pets";
+$sql = "SELECT * FROM Pets WHERE Estado = 0";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -35,17 +42,23 @@ if ($result->num_rows > 0) {
 
     <script>
     function myFunction(p1,u1) {
-        if (confirm("Deseas adoptar? Recuerda que si aceptas se le notificará al dueño para que se pongan en contacto contigo.")){
-          window.alert("empieza confirmacion");
-          $.post( "confirmacion_correo.php", { Id: u1, name: p1})
-          .done(function( data ) {
-            alert( "Data Loaded: " + data );
-          });
-          $.post( "adoptar.php", { name: p1 } );
-          window.alert("termina confirmacion");
-          location.replace("adopcion.php");
-
+        var flag='.$flag.';
+        if (flag==1){
+            if (confirm("Deseas adoptar? Recuerda que si aceptas se le notificará al dueño para que se pongan en contacto contigo.")){
+            //window.alert("empieza confirmacion");
+            $.post( "confirmacion_correo.php", { Id: u1, name: p1})
+            .done(function( data ) {
+              //alert( "Data Loaded: " + data );
+            });
+            $.post( "adoptar.php", { name: p1 } );
+            window.alert("Termina confirmacion");
+            location.replace("adopcion.php");
+          }
         }
+        else{
+          window.alert("Debes estar logeado para poder adoptar!");
+        }
+        
     }
 
     function myFunction2() {
