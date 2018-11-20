@@ -165,8 +165,8 @@ if ($_SESSION["id"] == -1) {
     					<span class="label-input100">Sexo</span>
 	    				<select class="selectpicker" name="sexo" id="sexo">
 	    					<option value="" selected disabled>Escoge uno</option>
-		        			<option value="1">Hembra</option>
-		        			<option value="0">Macho</option>
+		        			<option value="F">Hembra</option>
+		        			<option value="M">Macho</option>
 	    				</select>
 
 					</div>
