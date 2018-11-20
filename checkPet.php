@@ -45,7 +45,7 @@ $result = $conn->query($sql);
 //echo $usercheck;
 // Check if the form was submitted
 
-if($_SERVER["REQUEST_METHOD"] == "POST" && $val1=="1"){
+if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check if file was uploaded without errors
     if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
         $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
