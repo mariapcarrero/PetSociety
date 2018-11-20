@@ -195,7 +195,19 @@ if ($_SESSION["id"] == -1) {
 		        				<option value="2">Subasta</option>
 	    					</select>
 					</div>
-					
+
+
+					<div class="wrap-input100 validate-input" data-validate="Nombre de Animal es requerido">
+						<span class="label-input100">Si escogiste Venta o Subasta pon un precio </span>
+						<input class="input100" type="text" pattern="[0-9].{2,}" id="precio" name="precio" placeholder="Ej. 100000">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Nombre de Animal es requerido">
+						<span class="label-input100">Si escogiste Subasta pon un tiempo (En minutos) </span>
+						<input class="input100" type="text" pattern="[0-9].{1,}" id="tiempo" name="tiempo" placeholder="Ej. 30">
+						<span class="focus-input100"></span>
+					</div>
 					<!--<form method="POST" action="#" enctype="multipart/form-data">-->
 						<div class="form-group">
 							<span class="label-input100">Subir imagen (opcional)</span>

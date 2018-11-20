@@ -1,9 +1,10 @@
 <?php
 session_start();
 if ($_SESSION["id"] == -1) {
-  header("location:../Login.php");
+  header("location:Login.php");
 }
 ?>
+
 <!doctype html>
 <html class="no-js" lang="">
     <head>

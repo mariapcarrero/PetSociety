@@ -24,7 +24,8 @@ $sexo=$_POST["sexo"];
 $vacunado=$_POST["vacunado"];
 $estado=$_POST["estado"];
 $filename="None";
-
+$precio=$_POST["precio"];
+$tiempo=$_POST["tiempo"];
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -83,15 +84,41 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && $val1=="1"){
 //$usercheck2 = mysqli_query($conn,"SELECT Id_User FROM `Users` WHERE UserName = '".$."'");
 
 
+
 $sql = "INSERT INTO Pets (Id_User,Id_Breed,Tipo,Animal,Edad,Tamanio,Descripcion,CuidadosEsp,Foto,Vacunado,Sexo,Estado) VALUES ('$user','$breed','$animaltype','$animalname','$edad','$size','$description','$cuidado','$filename','$vacunado','$sexo','$estado')";
-echo "<script>window.alert('Se creó con éxito la mascota');";
+
     /*$sql1 = "SELECT ID FROM Pets ORDER BY ID DESC LIMIT 1";
     //echo "<script>window.alert('" . $sql1 . $usern . "');</script>";*/
 if ($conn->query($sql) === TRUE){
 // Check connection
         //$idPet = mysqli_query($conn,$sql1);
+    if ($estado == 0){
+        $sql3 = "SELECT MAX(Id_Pet) FROM Pets WHERE Id_User = '".$user."'";
+        $resultado = mysqli_query($conn, $sql3);
+        $fila = mysqli_fetch_row($resultado);
+        $pet = $fila[0];
+        $sql2 = "INSERT INTO Adoption (Id_User,Id_Pet) VALUES ('$user','$pet')";
+        mysqli_query($conn, $sql2);
+    }
+    elseif ($estado == 1){
+        $sql3 = "SELECT MAX(Id_Pet) FROM Pets WHERE Id_User = '".$user."'";
+        $resultado = mysqli_query($conn, $sql3);
+        $fila = mysqli_fetch_row($resultado);
+        $pet = $fila[0];
+        $sql2 = "INSERT INTO Sale (Id_User,Precio,Id_Pet) VALUES ('$user','$precio','$pet')";
+        mysqli_query($conn, $sql2);
+    }
+    else {
+        $sql3 = "SELECT MAX(Id_Pet) FROM Pets WHERE Id_User = '".$user."'";
+        $resultado = mysqli_query($conn, $sql3);
+        $fila = mysqli_fetch_row($resultado);
+        $pet = $fila[0];
+        $sql2 = "INSERT INTO Auction (Id_Pet,Id_User,MinPrice,Tiempo,Activo) VALUES ('$pet','$user','$precio','$tiempo','1')";
+        mysqli_query($conn, $sql2);
+    }
+    //echo "<script>window.alert('Se creó con éxito la mascota');";
     session_destroy();
-    header("location:registroMascota.php");
+    header("location:loggedIn.php");
 }
 
 $conn->close();
