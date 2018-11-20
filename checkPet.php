@@ -117,7 +117,7 @@ if ($conn->query($sql) === TRUE){
         mysqli_query($conn, $sql2);
     }
     //echo "<script>window.alert('Se creó con éxito la mascota');";
-    session_destroy();
+    //session_destroy();
     header("location:loggedIn.php");
 }
 
