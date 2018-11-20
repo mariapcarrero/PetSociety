@@ -18,8 +18,15 @@ if ($conn->connect_error) {
 
 // sql to delete a record
 $sql = "DELETE FROM Pets WHERE Id_Pet=". $idpet;
+$sq2 = "DELETE FROM Adoption WHERE Id_Pet=". $idpet;
 
 if ($conn->query($sql) === TRUE) {
+    echo "Record deleted successfully";
+} else {
+    echo "Error deleting record: " . $conn->error;
+}
+
+if ($conn->query($sq2) === TRUE) {
     echo "Record deleted successfully";
 } else {
     echo "Error deleting record: " . $conn->error;
