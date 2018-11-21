@@ -6,7 +6,7 @@ $password = "Granescala.123";
 $dbname = "GE";
 
 session_start();
-if(isset($_SESSION['id'])){
+if(isset($_SESSION['id']) && $_SESSION['id']!=-1){
   $flag=1;
 } else {
   $flag=0;
@@ -101,9 +101,19 @@ if ($result->num_rows > 0) {
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/../index.html">Página Principal
-                <span class="sr-only">(current)</span>
+            <li class="nav-item active">';
+
+if ($flag==0){
+  $concat=$concat . '<a class="nav-link" href="/../index.html">Página Principal';
+}
+else{
+  $concat=$concat . '<a class="nav-link" href="/../loggedIn.php">Página Principal';
+}
+              
+                
+$concat=$concat .
+
+                '<span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
